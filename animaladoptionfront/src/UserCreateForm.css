@@ -1,0 +1,72 @@
+/* UserCreateForm.css */
+
+.user-create-form {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 20px;
+  border: 1px solid #3498db; /* Borda azul */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.user-create-form h2 {
+  color: #3498db; /* Azul */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #333; /* Cor de texto padrão */
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Borda cinza claro */
+  border-radius: 5px;
+}
+
+.form-check-input {
+  margin-left: 5px;
+}
+
+.btn-primary {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto branco */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9; /* Azul mais escuro no hover */
+}
+
+.btn-secondary {
+  background-color: #ecf0f1; /* Cinza claro */
+  color: #333; /* Texto padrão */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.popup {
+  background-color: #3498db; /* Azul */
+  color: #fff; /* Texto branco */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.popup button {
+  background-color: #2980b9; /* Azul mais escuro no botão */
+  border: none;
+  color: #fff; /* Texto branco */
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

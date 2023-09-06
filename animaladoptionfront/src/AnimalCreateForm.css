@@ -1,0 +1,60 @@
+.animal-create-form {
+    max-width: 100%; /* Defina uma largura máxima de 400px ou outra adequada */
+    height: auto; /* Ajusta automaticamente a altura com base no conteúdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .animal-create-form h2 {
+    color: #333; /* Cor do texto */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea.form-control {
+    height: 50px; /* Altura maior para a área de texto */
+    width: 400px;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f8ff; /* Cor de fundo azul claro */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Azul claro para o botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Cor de destaque no hover */
+  }
+
+  
+  
