@@ -8,7 +8,8 @@ class AnimalCreateForm extends Component {
       name: '',
       species: '',
       description: '',
-      ownerId: '', // ID do proprietário (usuário)
+      userId: '',
+      showSuccessMessage: false,
     };
   }
 
@@ -19,9 +20,19 @@ class AnimalCreateForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, species, description, ownerId } = this.state;
-    const animalDto = { name, species, description, ownerId };
-  
+    const { name, species, description, userId } = this.state;
+
+    const userIdAsNumber = parseInt(userId, 10);
+
+    const animalDto = {
+      name,
+      species,
+      description,
+      owner: {
+        id: userIdAsNumber, 
+      },
+    };
+
     fetch('http://localhost:8080/api/animals', {
       method: 'POST',
       headers: {
@@ -31,31 +42,30 @@ class AnimalCreateForm extends Component {
     })
     .then(response => {
       if (response.status === 201) {
-        // Animal criado com sucesso
         return response.json();
       } else {
-        throw new Error('Erro ao criar animal');
+        throw new Error('Error creating animal');
       }
     })
     .then(createdAnimal => {
-      console.log('Animal criado com sucesso:', createdAnimal);
-      // Faça algo após a criação bem-sucedida, como redirecionar ou atualizar a interface do usuário.
+      console.log('Animal created successfully:', createdAnimal);
+
+      this.setState({ successMessage: 'Animal created successfully' });
     })
     .catch(error => {
-      console.error('Erro ao criar animal:', error);
-      // Lide com erros aqui, como exibir uma mensagem de erro para o usuário.
+      console.error('Error creating animal:', error);
     });
   }
 
   render() {
-    const { name, species, description, ownerId } = this.state;
+    const { name, species, description, userId } = this.state;
 
     return (
       <div className="animal-create-form">
-        <h2>Criar Animal</h2>
+        <h2>Create Animal</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Nome do Animal:</label>
+            <label htmlFor="name">Animal Name:</label>
             <input
               type="text"
               id="name"
@@ -66,7 +76,7 @@ class AnimalCreateForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="species">Espécie:</label>
+            <label htmlFor="species">Species:</label>
             <input
               type="text"
               id="species"
@@ -77,7 +87,7 @@ class AnimalCreateForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Descrição:</label>
+            <label htmlFor="description">Description:</label>
             <textarea
               id="description"
               name="description"
@@ -87,17 +97,17 @@ class AnimalCreateForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="ownerId">ID do Proprietário (Usuário):</label>
+            <label htmlFor="userId">Owner's ID (User):</label>
             <input
-              type="text"
-              id="ownerId"
-              name="ownerId"
-              value={ownerId}
+              type="number" 
+              id="userId" 
+              name="userId" 
+              value={userId}
               onChange={this.handleChange}
               className="form-control"
             />
           </div>
-          <button type="submit" className="btn btn-primary">Criar</button>
+          <button type="submit" className="btn btn-primary">Create</button>
         </form>
       </div>
     );

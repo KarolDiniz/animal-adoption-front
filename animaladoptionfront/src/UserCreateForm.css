@@ -1,15 +1,14 @@
-/* UserCreateForm.css */
 
 .user-create-form {
-  background-color: #ffffff; /* Fundo branco */
+  background-color: #ffffff; 
   padding: 20px;
-  border: 1px solid #3498db; /* Borda azul */
+  border: 1px solid #3498db; 
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .user-create-form h2 {
-  color: #3498db; /* Azul */
+  color: #3498db; 
 }
 
 .form-group {
@@ -18,13 +17,13 @@
 
 label {
   font-weight: bold;
-  color: #333; /* Cor de texto padrão */
+  color: #333; 
 }
 
 .form-control {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc; /* Borda cinza claro */
+  border: 1px solid #ccc; 
   border-radius: 5px;
 }
 
@@ -33,8 +32,8 @@ label {
 }
 
 .btn-primary {
-  background-color: #3498db; /* Azul */
-  color: #fff; /* Texto branco */
+  background-color: #3498db;
+  color: #fff; 
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -42,12 +41,12 @@ label {
 }
 
 .btn-primary:hover {
-  background-color: #2980b9; /* Azul mais escuro no hover */
+  background-color: #2980b9; 
 }
 
 .btn-secondary {
-  background-color: #ecf0f1; /* Cinza claro */
-  color: #333; /* Texto padrão */
+  background-color: #ecf0f1;
+  color: #333; 
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -55,17 +54,17 @@ label {
 }
 
 .popup {
-  background-color: #3498db; /* Azul */
-  color: #fff; /* Texto branco */
+  background-color: #3498db; 
+  color: #fff; 
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
 }
 
 .popup button {
-  background-color: #2980b9; /* Azul mais escuro no botão */
+  background-color: #2980b9;
   border: none;
-  color: #fff; /* Texto branco */
+  color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
