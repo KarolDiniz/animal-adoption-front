@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnimalCreateForm from './AnimalCreateForm.js';
-import Menu from './Menu'; 
+import Menu from './menu.js'; 
 
 {/*import './style/UserCreateForm.css';*/} 
 
