@@ -31,10 +31,10 @@ class UpdateUserForm extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('User updated:', data);
+        alert('Animal updated');
       })
       .catch((error) => {
-        console.error('Error updating user:', error);
+        alert('Error updating user:', error);
       });
   };
 

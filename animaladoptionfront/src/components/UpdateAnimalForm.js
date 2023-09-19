@@ -35,7 +35,7 @@ class UpdateAnimalForm extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Animal updated:', data);
+        alert('Animal updated:', data);
       })
       .catch((error) => {
         console.error('Error updating animal:', error);

@@ -41,13 +41,13 @@ class UserCreateForm extends Component {
         }
       })
       .then((createdUser) => {
-        console.log('User created successfully:', createdUser);
+        alert('User created successfully');
         this.setState({ isPopupVisible: true });
 
         this.setState({ isMenuVisible: true });
       })
       .catch((error) => {
-        console.error('Error creating user:', error);
+        alert('Error creating user');
       });
   }
 

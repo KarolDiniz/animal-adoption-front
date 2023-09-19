@@ -3,6 +3,8 @@ import AnimalCreateForm from './AnimalCreateForm.js';
 import UserCreateForm from './UserCreateForm';
 import UpdateUserForm from './UpdateUserForm'; 
 import UpdateAnimalForm from './UpdateAnimalForm'; 
+import DeleteUserForm from './DeleteUserForm';
+import DeleteAnimalForm from './DeleteAnimalForm';
 import './style/standart.css';
 
 class App extends Component {
@@ -10,6 +12,7 @@ class App extends Component {
     showUserCreateForm: true, showUser: false,
     showallUser: false, showAnimalCreateForm: false,
     showUpdateUserForm: false, showUpdateAnimalForm: false,
+    showDeleteUserForm: false, showDeleteAnimalForm: false,
     animalsData: [], usersData: [],
   };
 
@@ -48,12 +51,12 @@ class App extends Component {
         this.setState({
           showUserCreateForm: false,
           showAnimalCreateForm: false,
+          showUpdateUserForm: false,
+          showallUser: false,
           animalsData: data,
         });
       },
-      (error) => {
-        // Handle the error here
-      }
+      (error) => {}
     );
   };
 
@@ -62,6 +65,9 @@ class App extends Component {
       "http://localhost:8080/api/users",
       (data) => {
         this.setState({
+          showUserCreateForm: false,
+          showAnimalCreateForm: false,
+          showUpdateUserForm: false,
           showallUser: true,
           usersData: data,
         });
@@ -74,32 +80,42 @@ class App extends Component {
 
   handleUpdateUserClick = () => {
     this.setState({
-      showUserCreateForm: false,
+      showUpdateUserForm: true,
       showAnimalCreateForm: false,
       showUser: false,
       showallUser: false,
-      showUpdateUserForm: true,
       showUpdateAnimalForm: false, 
+      showUserCreateForm: false,
     });
   };
 
   handleUpdateAnimalClick = () => {
     this.setState({
-      showUserCreateForm: false,
       showAnimalCreateForm: false,
       showUser: false,
       showallUser: false,
       showUpdateUserForm: false,
       showUpdateAnimalForm: true, 
+      showUserCreateForm: false,
     });
   };
 
   handleDeleteUserClick = () => {
-    // Add logic to delete user here
+    this.setState({
+      showDeleteUserForm: true,
+      showDeleteAnimalForm: false,
+      showUserCreateForm: false,
+      // ... (defina outros estados como false, se necessário)
+    });
   };
 
   handleDeleteAnimalClick = () => {
-    // Add logic to delete animal here
+    this.setState({
+      showDeleteUserForm: false,
+      showDeleteAnimalForm: true,
+      showUserCreateForm: false,
+      // ... (defina outros estados como false, se necessário)
+    });
   };
 
   handleBackToMenuClick = () => {
@@ -108,6 +124,10 @@ class App extends Component {
       showAnimalCreateForm: false,
       showUser: false,
       showallUser: false,
+      showUpdateAnimalForm: false,
+      showUpdateUserForm: false,
+      showDeleteUserForm: false,
+      showDeleteAnimalForm: false,
     });
   };
 
@@ -121,6 +141,8 @@ class App extends Component {
       showallUser,
       showUpdateUserForm,
       showUpdateAnimalForm,
+      showDeleteUserForm,
+      showDeleteAnimalForm
     } = this.state;
 
       return (
@@ -187,6 +209,9 @@ class App extends Component {
 
         {showUserCreateForm && <menu />}
 
+        {showDeleteUserForm && <DeleteUserForm />}
+        {showDeleteAnimalForm && <DeleteAnimalForm />}
+
         {showUser && <UserCreateForm />}
         {showallUser && (
           <div>
@@ -204,7 +229,6 @@ class App extends Component {
             )}
           </div>
         )}
-
 
         {!showUserCreateForm && (
           <div>
