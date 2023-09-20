@@ -21,14 +21,14 @@ body, div, h1, p, ul, li, button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #c2c3c7;
+    background-color: #fafafa;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     padding: 20px;
     text-align: center;
   }
-  
+
   .menu button {
     margin-bottom: 10px;
     padding: 10px 20px;
@@ -40,7 +40,7 @@ body, div, h1, p, ul, li, button {
   }
   
   .menu button:hover {
-    background-color: #2a8f74;
+    background-color: #e2e533;
   }
 
   ul {
@@ -55,4 +55,90 @@ body, div, h1, p, ul, li, button {
   .back-button {
     margin-top: 20px;
   }
-  
+
+ /* standart.css */
+/* ... (outras regras de estilo) */
+
+/* Adicione as regras de estilo para a tabela aqui */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+  margin-top: 20px;
+  border: 2px solid #000;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #000;
+  border-top: 2px solid #000; /* Adicione esta linha para criar uma borda superior */
+  border-bottom: 2px solid #000; /* Adicione esta linha para criar uma borda inferior */
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  border: 2px solid #000;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Adicione as regras de estilo para destacar as colunas aqui */
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+td:hover {
+  background-color: #eee;
+  border-top: 2px solid #000; /* Adicione esta linha para criar uma borda superior em hover */
+  border-bottom: 2px solid #000; /* Adicione esta linha para criar uma borda inferior em hover */
+}
+
+/* Adicione essas regras no seu arquivo CSS (standart.css) */
+
+/* Estilo para a tela do formulário de login do administrador */
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+  width: 60vh;
+  background-color: #ffffff; /* Cor de fundo de sua escolha */
+}
+
+.admin-login-form h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #000000; /* Cor do texto de sua escolha */
+}
+
+.admin-login-form input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: 3px solid #bcbaba; /* Cor da borda de sua escolha */
+  margin-bottom: 10px;
+}
+
+.admin-login-form button {
+  padding: 10px 20px;
+  background-color: #4b4e4d; /* Cor do botão de sua escolha */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-login-form button:hover {
+  background-color: #d4bf1f; /* Cor do botão ao passar o mouse */
+}
+

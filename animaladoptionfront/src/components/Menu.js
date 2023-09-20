@@ -5,7 +5,9 @@ import UpdateUserForm from './UpdateUserForm';
 import UpdateAnimalForm from './UpdateAnimalForm'; 
 import DeleteUserForm from './DeleteUserForm';
 import DeleteAnimalForm from './DeleteAnimalForm';
+import Table from './Table';
 import './style/standart.css';
+import adminImage from './img/admin-image.jpg'
 
 class App extends Component {
   state = {
@@ -150,6 +152,7 @@ class App extends Component {
         {showUserCreateForm && (
           <div>
             <div className="menu">
+            <img src={adminImage} alt="Admin Image" />
               <h2>Menu</h2>
               <button
                 className="btn btn-primary"
@@ -213,44 +216,33 @@ class App extends Component {
         {showDeleteAnimalForm && <DeleteAnimalForm />}
 
         {showUser && <UserCreateForm />}
+        
         {showallUser && (
+      <div>
+        {usersData.length > 0 && (
           <div>
-            {usersData.length > 0 && (
-              <div>
-                <h2>View all users</h2>
-                <ul>
-                  {usersData.map((user) => (
-                    <li key={user.id}>
-                      User ID: {user.id}, Username: {user.username}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <h2>View all users</h2>
+            <Table data={usersData} columns={['id', 'username']} />
           </div>
         )}
+      </div>
+      )}
 
-        {!showUserCreateForm && (
+{!showUserCreateForm && (
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={this.handleBackToMenuClick}
+        >
+          Back to Menu
+        </button>
+
+        {animalsData.length > 0 && (
           <div>
-            <button
-              className="btn btn-primary"
-              onClick={this.handleBackToMenuClick}
-            >
-              Back to Menu
-            </button>
-
-            {animalsData.length > 0 && (
-                <div>
-                  <h2>View all animals</h2>
-                  <ul>
-                    {animalsData.map((animal) => (
-                      <li key={animal.id}>
-                        Animal ID: {animal.id}, Name: {animal.name}, Species: {animal.species}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                )}
+            <h2>View all animals</h2>
+            <Table data={animalsData} columns={['id', 'name', 'species']} />
+          </div>
+        )}
 
           </div>
         )}
