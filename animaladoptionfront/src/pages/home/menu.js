@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import AnimalCreateForm from './AnimalCreateForm.js';
-import UserCreateForm from './UserCreateForm';
-import UpdateUserForm from './UpdateUserForm'; 
-import UpdateAnimalForm from './UpdateAnimalForm'; 
-import DeleteUserForm from './DeleteUserForm';
-import DeleteAnimalForm from './DeleteAnimalForm';
-import Table from './Table';
-import './style/standart.css';
-import adminImage from './img/admin-image.jpg'
+import AnimalCreateForm from '../animalpage/AnimalCreateForm.js'
+import UserCreateForm from '../userpage/UserCreateForm.js';
+import UpdateUserForm from '../userpage/UpdateUserForm.js'; 
+import UpdateAnimalForm from '../animalpage/UpdateAnimalForm.js'; 
+import DeleteUserForm from '../userpage/DeleteUserForm.js';
+import DeleteAnimalForm from '../animalpage/DeleteAnimalForm.js';
+import Table from '../../components/Table.js';
+import '../../components/style/standart.css';
+import adminImage from '../../assets/img/admin-image.jpg'
 
 class App extends Component {
   state = {

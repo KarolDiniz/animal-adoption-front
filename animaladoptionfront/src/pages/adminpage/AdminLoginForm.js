@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Menu from './menu'; // Use o mesmo formato aqui (primeira letra em maiúscula)
-import './style/standart.css';
-import adminImage from './img/admin-image.jpg'
+import Menu from '../home/menu'; 
+import '../../components/style/standart.css';
+import adminImage from '../../assets/img/admin-image.jpg'
 
 function AdminLoginForm({ setAdminToken }) {
   const [adminToken, setAdminTokenValue] = useState('');

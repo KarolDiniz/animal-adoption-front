@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import AnimalCreateForm from './AnimalCreateForm.js';
-import Menu from './menu.js'; 
+import AnimalCreateForm from '../animalpage/AnimalCreateForm.js';
+import Menu from '../home/menu.js'; 
 
-{/*import './style/UserCreateForm.css';*/} 
 
 class UserCreateForm extends Component {
   constructor(props) {
