@@ -6,6 +6,9 @@
     text-align: center;
   }
   
+  .menu h1{
+    color: yellow;
+  }
   .menu h2 {
     margin-bottom: 20px;
     color: #2a4f76;

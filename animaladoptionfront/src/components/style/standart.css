@@ -30,12 +30,13 @@ body, div, h1, p, ul, li, button {
   }
 
   .menu button {
+    width: 130px; /* Defina a largura desejada para os botões */
     margin-bottom: 10px;
     padding: 10px 20px;
     background-color: #35393e;
     color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
   }
   
@@ -112,19 +113,19 @@ td:hover {
   justify-content: center;
   height: 30vh;
   width: 60vh;
-  background-color: #ffffff; /* Cor de fundo de sua escolha */
+  background-color: #ffffff; 
 }
 
 .admin-login-form h2 {
   font-size: 26px;
   margin-bottom: 20px;
-  color: #000000; /* Cor do texto de sua escolha */
+  color: #000000; 
 }
 
 .admin-login-form input[type="text"] {
-  width: 300px;
-  padding: 10px;
-  border: 3px solid #bcbaba; /* Cor da borda de sua escolha */
+  width: 150px;
+  padding: 05px;
+  border: 3px solid #bcbaba; 
   margin-bottom: 10px;
 }
 
@@ -140,5 +141,62 @@ td:hover {
 
 .admin-login-form button:hover {
   background-color: #d4bf1f; /* Cor do botão ao passar o mouse */
+} 
+.admin-login-form .input-container {
+  height: 60px;
+  display: flex;
+  gap: 20px;
 }
+
+.admin-login-form .input-container label {
+  flex: 60;
+}
+
+.admin-login-form .input-container button {
+  color: #000000;
+  background-color: #eded5a;
+  height: 30px;
+  width: 30px; /* Diminui o tamanho do botão */
+  font-size: 12px; /* Diminui o tamanho da fonte */
+  padding: 0; /* Remove o espaço interno do botão */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-login-form .input-container button:hover {
+  background-color: #a7a7a3; /* Cor do botão ao passar o mouse */
+} 
+
+.divider {
+  color: #d3d33c; /* Define a cor amarela */
+  text-align: center; /* Centraliza o traço horizontal */
+  margin: 20px 0; /* Adiciona margem para espaçamento */
+}
+
+.about {
+  background-color: #f5f5f5; /* Cor de fundo */
+  padding: 20px;
+  margin: 20px;
+  max-width: 400px; /* Largura máxima do conteúdo */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.about button {
+  background-color: #464646; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 20px;
+  padding: 05px 20px; /* Espaçamento interno (padding) */
+  cursor: pointer;
+}
+
+.about button:hover {
+  background-color: #a9a908; /* Cor de fundo do botão no hover */
+}
+
+
+
+
+
 

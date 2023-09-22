@@ -42,8 +42,8 @@ class UserCreateForm extends Component {
       .then((createdUser) => {
         alert('User created successfully');
         this.setState({ isPopupVisible: true });
-
         this.setState({ isMenuVisible: true });
+        window.location.reload();
       })
       .catch((error) => {
         alert('Error creating user');

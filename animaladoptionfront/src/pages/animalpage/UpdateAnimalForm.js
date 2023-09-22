@@ -4,9 +4,10 @@ class UpdateAnimalForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '', // Allow updating name
-      species: '', // Allow updating species
-      description: '', // Allow updating description
+      animalId: '', // Campo para inserir o ID do animal
+      name: '',
+      species: '',
+      description: '',
     };
   }
 
@@ -18,8 +19,7 @@ class UpdateAnimalForm extends Component {
   };
 
   handleSubmit = () => {
-    const { name, species, description } = this.state;
-    const animalId = this.props.animalId; // Assume you pass the animal ID as a prop
+    const { animalId, name, species, description } = this.state;
     const updatedAnimal = {
       name,
       species,
@@ -43,12 +43,22 @@ class UpdateAnimalForm extends Component {
   };
 
   render() {
-    const { name, species, description } = this.state;
+    const { animalId, name, species, description } = this.state;
 
     return (
       <div>
         <h2>Update Animal</h2>
         <form>
+          <div>
+            <label htmlFor="animalId">Animal ID:</label>
+            <input
+              type="text"
+              id="animalId"
+              name="animalId"
+              value={animalId}
+              onChange={this.handleInputChange}
+            />
+          </div>
           <div>
             <label htmlFor="name">Name:</label>
             <input
