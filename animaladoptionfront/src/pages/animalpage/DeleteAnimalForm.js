@@ -15,26 +15,20 @@ class DeleteAnimalForm extends Component {
   handleDeleteAnimal = () => {
     const { animalId } = this.state;
   
-    // Certifique-se de que animalId seja válido antes de fazer a solicitação
     if (!animalId) {
       alert("Por favor, insira um Animal ID válido.");
       return;
     }
   
-    // Faça a solicitação DELETE para o endpoint de exclusão de animal
     fetch(`http://localhost:8080/api/animals/${animalId}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.status === 200) {
-          // O animal foi excluído com sucesso
           alert("Animal excluído com sucesso.");
-          // Você pode adicionar lógica adicional, como atualizar a lista de animais
         } else if (response.status === 404) {
-          // Animal não encontrado
           alert("Animal não encontrado.");
         } else {
-          // Outro erro
           alert("Ocorreu um erro ao excluir o animal.");
         }
       })

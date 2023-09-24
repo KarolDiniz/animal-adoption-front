@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import AnimalHome from './AnimalHome.js';
 import UserHome from './UserHome.js';
-import About from './About.js'; // Novo componente de informações "About"
+import About from './About.js'; 
 import adminImage from '../../assets/img/admin-image.jpg';
 
 class App extends Component {
   state = {
     showAnimalHome: false,
     showUserHome: false,
-    showAbout: false, // Novo estado para controlar "About"
+    showAbout: false, 
   };
 
   handleAnimalHomeClick = () => {
     this.setState({
       showAnimalHome: true,
       showUserHome: false,
-      showAbout: false, // Certifique-se de definir showAbout como falso
+      showAbout: false,
     });
   };
 
@@ -23,7 +23,7 @@ class App extends Component {
     this.setState({
       showAnimalHome: false,
       showUserHome: true,
-      showAbout: false, // Certifique-se de definir showAbout como falso
+      showAbout: false,
     });
   };
 
@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({
       showAnimalHome: false,
       showUserHome: false,
-      showAbout: true, // Ativa a exibição de "About"
+      showAbout: true, 
     });
   };
 
@@ -65,7 +65,6 @@ class App extends Component {
               >
                 CRUD Animal
               </button>
-              {/* Adicione o botão "About" */}
               <button
                 className="btn btn-primary"
                 onClick={this.handleAboutClick}
@@ -76,7 +75,6 @@ class App extends Component {
           )}
         </div>
 
-        {/* Renderiza o componente "About" condicionalmente */}
         {showAnimalHome && <AnimalHome goBack={this.handleBackToMenuClick} />}
         {showUserHome && <UserHome goBack={this.handleBackToMenuClick} />}
         {showAbout && <About onBackClick={this.handleBackToMenuClick} />}

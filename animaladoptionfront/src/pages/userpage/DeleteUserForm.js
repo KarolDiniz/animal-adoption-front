@@ -14,26 +14,20 @@ class DeleteUserForm extends Component {
   handleDeleteUser = () => {
     const { userId } = this.state;
   
-    // Certifique-se de que userId seja válido antes de fazer a solicitação
     if (!userId) {
       alert("Por favor, insira um User ID válido.");
       return;
     }
   
-    // Faça a solicitação DELETE para o endpoint de exclusão de usuário
     fetch(`http://localhost:8080/api/users/${userId}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.status === 200) {
-          // O usuário foi excluído com sucesso
           alert("Usuário excluído com sucesso.");
-          // Você pode adicionar lógica adicional, como atualizar a lista de usuários
         } else if (response.status === 404) {
-          // Usuário não encontrado
           alert("Usuário não encontrado.");
         } else {
-          // Outro erro
           alert("Ocorreu um erro ao excluir o usuário.");
         }
       })

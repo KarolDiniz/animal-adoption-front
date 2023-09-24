@@ -1,5 +1,3 @@
-
-// Table.js
 import React from 'react';
 
 function Table({ data, columns }) {

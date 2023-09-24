@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-{/*import './style/AnimalCreateForm.css';*/}
 
 class AnimalCreateForm extends Component {
   constructor(props) {

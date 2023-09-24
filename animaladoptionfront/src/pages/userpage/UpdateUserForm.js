@@ -4,8 +4,8 @@ class UpdateUserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '', // Add a new state property for user ID
-      username: '', // Only allow updating username
+      userId: '', 
+      username: '', 
     };
   }
 

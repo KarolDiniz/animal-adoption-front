@@ -4,7 +4,7 @@ class UpdateAnimalForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animalId: '', // Campo para inserir o ID do animal
+      animalId: '', 
       name: '',
       species: '',
       description: '',

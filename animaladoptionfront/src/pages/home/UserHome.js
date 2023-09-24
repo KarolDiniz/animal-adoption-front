@@ -13,7 +13,7 @@ class UserHome extends Component {
     showCreateForm: false,
     showUpdateForm: false,
     showDeleteForm: false,
-    showTable: true, // Novo estado para controlar a visibilidade da tabela
+    showTable: true, 
   };
 
   componentDidMount() {
@@ -71,7 +71,6 @@ class UserHome extends Component {
     this.props.goBack();
   };
 
-  // Método para alternar a visibilidade da tabela
   handleToggleTable = () => {
     this.setState((prevState) => ({
       showTable: !prevState.showTable,
@@ -85,7 +84,7 @@ class UserHome extends Component {
       showUpdateForm,
       showDeleteForm,
       showMenu,
-      showTable, // Novo estado para controlar a visibilidade da tabela
+      showTable, 
     } = this.state;
 
     return (
@@ -131,7 +130,6 @@ class UserHome extends Component {
               Back
             </button>
 
-            {/* Botão para mostrar/ocultar a tabela */}
             <button
               className="btn btn-primary"
               onClick={this.handleToggleTable}
