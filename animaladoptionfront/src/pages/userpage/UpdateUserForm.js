@@ -4,7 +4,6 @@ class UpdateUserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '', 
       username: '', 
     };
   }
@@ -17,12 +16,14 @@ class UpdateUserForm extends Component {
   };
 
   handleSubmit = () => {
-    const { userId, username } = this.state;
+    const { username } = this.state;
+    const { selectedUserId } = this.props; 
+
     const updateUser = {
       username,
     };
 
-    fetch(`http://localhost:8080/api/users/${userId}`, {
+    fetch(`http://localhost:8080/api/users/${selectedUserId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ class UpdateUserForm extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert('Animal updated');
+        alert('User updated');
       })
       .catch((error) => {
         alert('Error updating user:', error);
@@ -39,22 +40,12 @@ class UpdateUserForm extends Component {
   };
 
   render() {
-    const { userId, username } = this.state;
+    const { username } = this.state;
 
     return (
       <div>
         <h2>Update User</h2>
         <form>
-          <div>
-            <label htmlFor="userId">User ID:</label>
-            <input
-              type="text"
-              id="userId"
-              name="userId"
-              value={userId}
-              onChange={this.handleInputChange}
-            />
-          </div>
           <div>
             <label htmlFor="username">New Username:</label>
             <input

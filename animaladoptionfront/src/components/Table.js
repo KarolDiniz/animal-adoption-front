@@ -15,7 +15,7 @@ function Table({ data, columns }) {
           <tr key={index}>
             {columns.map((column) => (
               <td key={column} className={column.toLowerCase()}>
-                {item[column]}
+                {column === 'actions' ? item[column] : item[column]}
               </td>
             ))}
           </tr>

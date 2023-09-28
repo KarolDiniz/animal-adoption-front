@@ -4,55 +4,42 @@ class DeleteUserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '',
+      confirmDelete: false,
     };
   }
 
-  handleUserIdChange = (e) => {
-    this.setState({ userId: e.target.value });
+  handleConfirmDelete = () => {
+    this.setState({ confirmDelete: true });
   };
+
+  handleCancelDelete = () => {
+    this.setState({ confirmDelete: false });
+  };
+
   handleDeleteUser = () => {
-    const { userId } = this.state;
-  
-    if (!userId) {
-      alert("Por favor, insira um User ID válido.");
-      return;
-    }
-  
-    fetch(`http://localhost:8080/api/users/${userId}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("Usuário excluído com sucesso.");
-        } else if (response.status === 404) {
-          alert("Usuário não encontrado.");
-        } else {
-          alert("Ocorreu um erro ao excluir o usuário.");
-        }
-      })
-      .catch((error) => {
-        console.error("Erro ao excluir o usuário:", error);
-        alert("Ocorreu um erro ao excluir o usuário.");
-      });
+    const { userId, onDeleteUser } = this.props;
+    onDeleteUser(userId);
   };
-  
 
   render() {
+    const { confirmDelete } = this.state;
+
     return (
       <div>
         <h2>Delete User</h2>
-        <form>
-          <label>
-            User ID:
-            <input
-              type="text"
-              value={this.state.userId}
-              onChange={this.handleUserIdChange}
-            />
-          </label>
-          <button onClick={this.handleDeleteUser}>Delete User</button>
-        </form>
+        {confirmDelete ? (
+          <div>
+            <p>Tem certeza que deseja excluir este usuário?</p>
+            <button onClick={this.handleDeleteUser}>Sim</button>
+            <button onClick={this.handleCancelDelete}>Cancelar</button>
+          </div>
+        ) : (
+          <div>
+            <p>Clique em "Sim" para confirmar a exclusão do usuário.</p>
+            <button onClick={this.handleConfirmDelete}>Sim</button>
+            <button onClick={this.handleCancelDelete}>Cancelar</button>
+          </div>
+        )}
       </div>
     );
   }

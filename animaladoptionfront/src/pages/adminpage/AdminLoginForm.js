@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import Menu from '../home/menu'; 
+import { toast } from 'react-toastify'; // Importe a biblioteca de toast
+import 'react-toastify/dist/ReactToastify.css'; // Importe o CSS da biblioteca
+
+import Menu from '../home/menu';
 import '../../components/style/standart.css';
-import adminImage from '../../assets/img/admin-image.jpg'
+import adminImage from '../../assets/img/admin-image.jpg';
 
 function AdminLoginForm({ setAdminToken }) {
   const [adminToken, setAdminTokenValue] = useState('');
@@ -10,8 +13,11 @@ function AdminLoginForm({ setAdminToken }) {
 
   const handleLogin = () => {
     if (adminToken === 'roleadmin') {
+      toast.success('Login successful');
       setAdminToken('roleadmin');
       setShowMenu(true);
+    } else {
+      toast.error('Invalid token'); 
     }
   };
 
@@ -30,10 +36,7 @@ function AdminLoginForm({ setAdminToken }) {
           value={adminToken}
           onChange={(e) => setAdminTokenValue(e.target.value)}
         />
-        <button
-          onClick={togglePasswordVisibility}
-          className="eye-button"
-        >
+        <button onClick={togglePasswordVisibility} className="eye-button">
           {showPassword ? 'Hide' : 'Show'}
         </button>
       </div>
