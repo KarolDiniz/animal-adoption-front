@@ -4,7 +4,6 @@ class UpdateAnimalForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animalId: '', 
       name: '',
       species: '',
       description: '',
@@ -19,13 +18,18 @@ class UpdateAnimalForm extends Component {
   };
 
   handleSubmit = () => {
-    const { animalId, name, species, description } = this.state;
+    const { name, species, description } = this.state;
+    const { animalId } = this.props;
+  
     const updatedAnimal = {
       name,
       species,
       description,
     };
 
+    console.log('Received animalId:', animalId); // Adicione este console.log para verificar o animalId
+
+  
     fetch(`http://localhost:8080/api/animals/${animalId}`, {
       method: 'PUT',
       headers: {
@@ -33,7 +37,12 @@ class UpdateAnimalForm extends Component {
       },
       body: JSON.stringify(updatedAnimal),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON response
+      })
       .then((data) => {
         alert('Animal updated:', data);
       })
@@ -41,24 +50,15 @@ class UpdateAnimalForm extends Component {
         console.error('Error updating animal:', error);
       });
   };
+  
 
   render() {
-    const { animalId, name, species, description } = this.state;
+    const { name, species, description } = this.state;
 
     return (
       <div>
         <h2>Update Animal</h2>
         <form>
-          <div>
-            <label htmlFor="animalId">Animal ID:</label>
-            <input
-              type="text"
-              id="animalId"
-              name="animalId"
-              value={animalId}
-              onChange={this.handleInputChange}
-            />
-          </div>
           <div>
             <label htmlFor="name">Name:</label>
             <input

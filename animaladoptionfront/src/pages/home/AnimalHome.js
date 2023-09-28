@@ -78,6 +78,43 @@ class AnimalHome extends Component {
     }));
   };
 
+  mapAnimalDataWithActions = (animalsData) => {
+    return animalsData.map((animal) => ({
+      ...animal,
+      actions: (
+        <div>
+          <button onClick={() => this.handleEditAnimal(animal.id)}>Edit</button>
+          <button onClick={() => this.handleShowDeleteConfirmationModal(animal.id)}>Delete</button>
+        </div>
+      ),
+    }));
+  };
+
+  handleEditAnimal = (animalId) => {
+    console.log('Edit animal with ID:', animalId); // Adicione este console.log
+    this.setState({
+      showCreateForm: false,
+      showUpdateForm: true,
+      showDeleteForm: false,
+      showMenu: false,
+      selectedAnimalId: animalId,
+    });
+  };
+  
+  handleShowDeleteConfirmationModal = (animalId) => {
+    console.log('Delete animal with ID:', animalId); // Adicione este console.log
+    this.setState({
+      showCreateForm: false,
+      showUpdateForm: false,
+      showDeleteForm: true,
+      showMenu: false,
+      selectedAnimalId: animalId,
+    });
+  };
+  
+  
+  
+
   render() {
     const {
       animalsData,
@@ -95,8 +132,9 @@ class AnimalHome extends Component {
         <img src={adminImage} alt="Admin Image" />
 
         {showCreateForm && <AnimalCreateForm />}
-        {showUpdateForm && <UpdateAnimalForm />}
-        {showDeleteForm && <DeleteAnimalForm />}
+        {showUpdateForm && <UpdateAnimalForm animalId={this.state.selectedAnimalId} />}
+        {showDeleteForm && <DeleteAnimalForm animalId={this.state.selectedAnimalId} />}
+
 
         {showCreateForm || showUpdateForm || showDeleteForm ? (
           <button
@@ -112,29 +150,17 @@ class AnimalHome extends Component {
               onClick={this.handleCreateAnimalClick}
             >
               Create Animal
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={this.handleUpdateAnimalClick}
-            >
-              Update Animal
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={this.handleDeleteAnimalClick}
-            >
-              Delete Animal
-            </button>
-
-            <button className="btn btn-primary" onClick={this.handleGoBackClick}>
-              Back
-            </button>
+            </button>  
             
             <button
               className="btn btn-primary"
               onClick={this.handleToggleTable}
             >
               {showTable ? 'Hide Table' : 'Show Table'}
+            </button>
+
+            <button className="btn btn-primary" onClick={this.handleGoBackClick}>
+              Back
             </button>
           </div>
         )}
@@ -144,9 +170,14 @@ class AnimalHome extends Component {
         {showTable && animalsData.length > 0 && (
           <div>
             <h2>View all animals</h2>
-            <Table data={animalsData} columns={['id', 'name', 'species']} />
+            <Table
+              data={this.mapAnimalDataWithActions(animalsData)}
+              columns={['id', 'name', 'species', 'actions']} // Adicione 'actions' às colunas
+              onDelete={this.handleShowDeleteConfirmationModal} // Chame a função ao clicar em "Delete"
+            />
           </div>
         )}
+
       </div>
     );
   }
