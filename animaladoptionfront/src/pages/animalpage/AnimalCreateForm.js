@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class AnimalCreateForm extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class AnimalCreateForm extends Component {
       species: '',
       description: '',
       userId: '',
-      showSuccessMessage: false,
+      successMessage: '',
     };
   }
 
@@ -21,6 +23,12 @@ class AnimalCreateForm extends Component {
     e.preventDefault();
     const { name, species, description, userId } = this.state;
 
+    // Check for empty fields
+    if (!name || !species || !description || !userId) {
+      toast.error('Please fill in all fields.');
+      return;
+    }
+
     const userIdAsNumber = parseInt(userId, 10);
 
     const animalDto = {
@@ -28,7 +36,7 @@ class AnimalCreateForm extends Component {
       species,
       description,
       owner: {
-        id: userIdAsNumber, 
+        id: userIdAsNumber,
       },
     };
 
@@ -41,23 +49,24 @@ class AnimalCreateForm extends Component {
     })
     .then(response => {
       if (response.status === 201) {
-        return response.json();
+        return response.text(); // Receive the response as text
       } else {
-        throw new Error('Error creating animal');
+        return response.json().then(errorMessage => {
+          throw new Error(errorMessage); // Throw the error message as an Error object
+        });
       }
     })
-    .then(createdAnimal => {
-      console.log('Animal created successfully:', createdAnimal);
-
-      this.setState({ successMessage: 'Animal created successfully' });
+    .then(successMessage => {
+      toast.success(successMessage); // Display the success message
     })
     .catch(error => {
+      toast.error(error.message); // Display the server's error message
       console.error('Error creating animal:', error);
     });
   }
 
   render() {
-    const { name, species, description, userId } = this.state;
+    const { name, species, description, userId, successMessage } = this.state;
 
     return (
       <div className="animal-create-form">
@@ -98,9 +107,9 @@ class AnimalCreateForm extends Component {
           <div className="form-group">
             <label htmlFor="userId">Owner's ID (User):</label>
             <input
-              type="number" 
-              id="userId" 
-              name="userId" 
+              type="number"
+              id="userId"
+              name="userId"
               value={userId}
               onChange={this.handleChange}
               className="form-control"
@@ -108,6 +117,8 @@ class AnimalCreateForm extends Component {
           </div>
           <button type="submit" className="btn btn-primary">Create</button>
         </form>
+        {successMessage && <p className="success">{successMessage}</p>}
+        <ToastContainer />
       </div>
     );
   }

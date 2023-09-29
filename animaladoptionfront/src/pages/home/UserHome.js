@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import UserCreateForm from '../userpage/UserCreateForm.js';
 import UpdateUserForm from '../userpage/UpdateUserForm.js';
 import Table from '../../components/Table';
+import '../../components/style/standart.css';
 import '../../components/style/bootstrap.min.css';
 import adminImage from '../../assets/img/admin-image.jpg';
 import DeleteUserForm from '../userpage/DeleteUserForm.js';
+
+import editarIcon from '../../assets/img/icons8-editar.svg';
+import removerIcon from '../../assets/img/icons8-remover.svg';
+
+import '../../components/style/action.css';
 class UserHome extends Component {
   state = {
     usersData: [],
@@ -94,13 +100,18 @@ mapUserDataWithActions = (usersData) => {
   return usersData.map((user) => ({
     ...user,
     actions: (
-      <div>
-        <button onClick={() => this.handleEditUser(user.id)}>Edit</button>
-        <button onClick={() => this.handleDeleteUser(user.id)}>Delete</button>
+      <div className="action"> {/* Use a classe .action aqui */}
+        <button onClick={() => this.handleEditUser(user.id)}>
+          <img src={editarIcon} alt="Edit" />
+        </button>
+        <button onClick={() => this.handleDeleteUser(user.id)}>
+          <img src={removerIcon} alt="Delete" />
+        </button>
       </div>
     ),
   }));
 };
+
 
 
 handleConfirmDelete = () => {
@@ -144,17 +155,9 @@ render() {
       <h1 className="divider">------------------</h1>
       <img src={adminImage} alt="Admin Image" />
       
-      {showCreateForm && (
-        <UserCreateForm />
-      )}
-      {showUpdateForm && (
-        <UpdateUserForm
-          selectedUserId={selectedUserId} 
-        />
-      )}
-      {showDeleteForm && (
-        <DeleteUserForm onDeleteUser={this.handleConfirmDelete} userId={selectedUserId} />
-      )} 
+      {showCreateForm && (<UserCreateForm />)}
+      {showUpdateForm && ( <UpdateUserForm selectedUserId={selectedUserId} />)}
+      {showDeleteForm && ( <DeleteUserForm onDeleteUser={this.handleConfirmDelete} userId={selectedUserId} />)} 
       
       {showCreateForm || showUpdateForm || showDeleteForm ? (
         <button

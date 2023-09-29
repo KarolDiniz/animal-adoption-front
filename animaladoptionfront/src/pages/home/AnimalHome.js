@@ -7,6 +7,11 @@ import '../../components/style/standart.css';
 import '../../components/style/bootstrap.min.css';
 import adminImage from '../../assets/img/admin-image.jpg';
 
+import editarIcon from '../../assets/img/icons8-editar.svg';
+import removerIcon from '../../assets/img/icons8-remover.svg';
+
+import '../../components/style/action.css';
+
 class AnimalHome extends Component {
   state = {
     animalsData: [],
@@ -80,12 +85,15 @@ class AnimalHome extends Component {
 
   mapAnimalDataWithActions = (animalsData) => {
     return animalsData.map((animal) => ({
-      ...animal,
-      actions: (
-        <div>
-          <button onClick={() => this.handleEditAnimal(animal.id)}>Edit</button>
-          <button onClick={() => this.handleShowDeleteConfirmationModal(animal.id)}>Delete</button>
-        </div>
+      ...animal,actions: (
+        <div className="action">
+        <button onClick={() => this.handleEditAnimal(animal.id)}>
+              <img src={editarIcon} alt="Edit" />
+            </button>
+            <button onClick={() => this.handleShowDeleteConfirmationModal(animal.id)}>
+              <img src={removerIcon} alt="Delete" />
+            </button>
+      </div>
       ),
     }));
   };

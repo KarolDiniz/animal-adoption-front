@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import AnimalCreateForm from '../animalpage/AnimalCreateForm.js';
 import Menu from '../home/menu.js'; 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UserCreateForm extends Component {
   constructor(props) {
@@ -11,19 +12,36 @@ class UserCreateForm extends Component {
       isAdmin: false,
       isPopupVisible: false,
       isAnimalCreateFormVisible: false,
-      isMenuVisible: false, 
+      isMenuVisible: false,
+      usernameError: '', // Error message for username validation
     };
   }
 
   handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     this.setState({ [name]: type === 'checkbox' ? checked : value });
+
+    // Validate username
+    if (name === 'username') {
+      const usernamePattern = /^[a-zA-Z]+$/; // Only allows letters
+      if (!usernamePattern.test(value)) {
+        this.setState({ usernameError: 'Username should only contain letters' });
+      } else {
+        this.setState({ usernameError: '' });
+      }
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { username, isAdmin } = this.state;
     const userDto = { username, isAdmin };
+
+    // Check for username validation error before submitting
+    if (this.state.usernameError) {
+      toast.error('Username is not valid. Please correct the errors.');
+      return;
+    }
 
     fetch('http://localhost:8080/api/users', {
       method: 'POST',
@@ -40,13 +58,13 @@ class UserCreateForm extends Component {
         }
       })
       .then((createdUser) => {
-        alert('User created successfully');
+        toast.success('User created successfully');
         this.setState({ isPopupVisible: true });
         this.setState({ isMenuVisible: true });
         window.location.reload();
       })
       .catch((error) => {
-        alert('Error creating user');
+        toast.error('Error creating user');
       });
   }
 
@@ -57,6 +75,7 @@ class UserCreateForm extends Component {
       isPopupVisible,
       isAnimalCreateFormVisible,
       isMenuVisible,
+      usernameError,
     } = this.state;
 
     return (
@@ -77,6 +96,9 @@ class UserCreateForm extends Component {
                   onChange={this.handleChange}
                   className="form-control"
                 />
+                {usernameError && (
+                  <p className="error">{usernameError}</p>
+                )}
               </div>
               <div className="form-group">
                 <label>Is Administrator?</label>
@@ -101,10 +123,10 @@ class UserCreateForm extends Component {
             {isAnimalCreateFormVisible && <AnimalCreateForm />}
           </>
         )}
+        <ToastContainer /> {/* Add the ToastContainer here */}
       </div>
     );
   }
 }
 
 export default UserCreateForm;
-
