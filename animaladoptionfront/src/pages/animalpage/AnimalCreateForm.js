@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 class AnimalCreateForm extends Component {
   constructor(props) {
     super(props);
@@ -22,15 +23,21 @@ class AnimalCreateForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { name, species, description, userId } = this.state;
-
+  
     // Check for empty fields
     if (!name || !species || !description || !userId) {
       toast.error('Please fill in all fields.');
       return;
     }
-
+  
+    // Check minimum length requirement
+    if (name.length < 3 || species.length < 3 || description.length < 10) {
+      toast.error('Name and species must have at least 3 characters, and description must have at least 10 characters.');
+      return;
+    }    
+  
     const userIdAsNumber = parseInt(userId, 10);
-
+  
     const animalDto = {
       name,
       species,
@@ -39,7 +46,7 @@ class AnimalCreateForm extends Component {
         id: userIdAsNumber,
       },
     };
-
+  
     fetch('http://localhost:8080/api/animals', {
       method: 'POST',
       headers: {
@@ -47,24 +54,24 @@ class AnimalCreateForm extends Component {
       },
       body: JSON.stringify(animalDto),
     })
-    .then(response => {
-      if (response.status === 201) {
-        return response.text(); // Receive the response as text
-      } else {
-        return response.json().then(errorMessage => {
-          throw new Error(errorMessage); // Throw the error message as an Error object
-        });
-      }
-    })
-    .then(successMessage => {
-      toast.success(successMessage); // Display the success message
-    })
-    .catch(error => {
-      toast.error(error.message); // Display the server's error message
-      console.error('Error creating animal:', error);
-    });
+      .then(response => {
+        if (response.status === 201) {
+          return response.text(); // Receive the response as text
+        } else {
+          return response.json().then(errorMessage => {
+            throw new Error(errorMessage); // Throw the error message as an Error object
+          });
+        }
+      })
+      .then(successMessage => {
+        toast.success(successMessage); // Display the success message
+      })
+      .catch(error => {
+        toast.error(error.message); // Display the server's error message
+        console.error('Error creating animal:', error);
+      });
   }
-
+  
   render() {
     const { name, species, description, userId, successMessage } = this.state;
 

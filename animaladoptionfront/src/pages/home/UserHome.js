@@ -10,6 +10,10 @@ import DeleteUserForm from '../userpage/DeleteUserForm.js';
 import editarIcon from '../../assets/img/icons8-editar.svg';
 import removerIcon from '../../assets/img/icons8-remover.svg';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import '../../components/style/action.css';
 class UserHome extends Component {
   state = {
@@ -125,19 +129,19 @@ handleConfirmDelete = () => {
   fetch(`http://localhost:8080/api/users/${userToDeleteId}`, {
     method: "DELETE",
   })
-    .then((response) => {
-      if (response.status === 200) {
-        alert("Usuário excluído com sucesso.");
-      } else if (response.status === 404) {
-        alert("Usuário não encontrado.");
-      } else {
-        alert("Ocorreu um erro ao excluir o usuário.");
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao excluir o usuário:", error);
-      alert("Ocorreu um erro ao excluir o usuário.");
-    });
+  .then((response) => {
+    if (response.status === 200) {
+      toast.success("Usuário excluído com sucesso.");
+    } else if (response.status === 404) {
+      toast.error("Usuário não encontrado.");
+    } else {
+      toast.error("Ocorreu um erro ao excluir o usuário.");
+    }
+  })
+  .catch((error) => {
+    console.error("Erro ao excluir o usuário:", error);
+    toast.error("Ocorreu um erro ao excluir o usuário.");
+  });
 };
 
 
@@ -202,8 +206,8 @@ render() {
       onDeleteUser={this.handleConfirmDelete} 
     />
   </div>
-)}
-
+    )}
+    <ToastContainer />
     </div>
   );
  }  

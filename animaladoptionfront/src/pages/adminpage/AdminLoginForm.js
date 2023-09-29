@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify'; // Importe a biblioteca de toast
-import 'react-toastify/dist/ReactToastify.css'; // Importe o CSS da biblioteca
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Menu from '../home/menu';
 import '../../components/style/standart.css';
 import adminImage from '../../assets/img/admin-image.jpg';
@@ -13,7 +12,6 @@ function AdminLoginForm({ setAdminToken }) {
 
   const handleLogin = () => {
     if (adminToken === 'roleadmin') {
-      toast.success('Login successful');
       setAdminToken('roleadmin');
       setShowMenu(true);
     } else {
@@ -43,6 +41,7 @@ function AdminLoginForm({ setAdminToken }) {
       <button onClick={handleLogin}>Enter</button>
 
       {showMenu && <Menu />}
+      <ToastContainer />
     </div>
   );
 }

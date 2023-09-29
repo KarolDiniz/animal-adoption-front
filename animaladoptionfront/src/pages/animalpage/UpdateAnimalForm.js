@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UpdateAnimalForm extends Component {
   constructor(props) {
@@ -20,7 +22,13 @@ class UpdateAnimalForm extends Component {
   handleSubmit = () => {
     const { name, species, description } = this.state;
     const { animalId } = this.props;
-  
+
+    // Realizar a validação dos campos
+    if (name.length < 3 || species.length < 3 || description.length < 10) {
+      toast.error('Name and species must have at least 3 characters. Description must have at least 10 characters.');
+      return;
+    }
+
     const updatedAnimal = {
       name,
       species,
@@ -29,7 +37,6 @@ class UpdateAnimalForm extends Component {
 
     console.log('Received animalId:', animalId); // Adicione este console.log para verificar o animalId
 
-  
     fetch(`http://localhost:8080/api/animals/${animalId}`, {
       method: 'PUT',
       headers: {
@@ -44,13 +51,13 @@ class UpdateAnimalForm extends Component {
         return response.json(); // Parse the JSON response
       })
       .then((data) => {
-        alert('Animal updated:', data);
+        toast.success('Animal updated successfully.');
       })
       .catch((error) => {
+        toast.error('Error updating animal:', error);
         console.error('Error updating animal:', error);
       });
   };
-  
 
   render() {
     const { name, species, description } = this.state;
@@ -92,6 +99,7 @@ class UpdateAnimalForm extends Component {
             Update Animal
           </button>
         </form>
+        <ToastContainer />
       </div>
     );
   }

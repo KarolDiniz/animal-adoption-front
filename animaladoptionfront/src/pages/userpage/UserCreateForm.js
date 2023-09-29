@@ -24,7 +24,9 @@ class UserCreateForm extends Component {
     // Validate username
     if (name === 'username') {
       const usernamePattern = /^[a-zA-Z]+$/; // Only allows letters
-      if (!usernamePattern.test(value)) {
+      if (value.length < 3) {
+        this.setState({ usernameError: 'Username should have at least 3 characters' });
+      } else if (!usernamePattern.test(value)) {
         this.setState({ usernameError: 'Username should only contain letters' });
       } else {
         this.setState({ usernameError: '' });
@@ -35,6 +37,19 @@ class UserCreateForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { username, isAdmin } = this.state;
+
+    // Check if the username is empty
+    if (username.trim() === '') {
+      toast.error('Username cannot be empty.');
+      return;
+    }
+
+    // Check if the username meets the minimum length requirement
+    if (username.length < 3) {
+      toast.error('Username should have at least 3 characters.');
+      return;
+    }
+
     const userDto = { username, isAdmin };
 
     // Check for username validation error before submitting
@@ -61,7 +76,6 @@ class UserCreateForm extends Component {
         toast.success('User created successfully');
         this.setState({ isPopupVisible: true });
         this.setState({ isMenuVisible: true });
-        window.location.reload();
       })
       .catch((error) => {
         toast.error('Error creating user');

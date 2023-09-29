@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UpdateUserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '', 
+      username: '',
     };
   }
 
@@ -17,7 +19,13 @@ class UpdateUserForm extends Component {
 
   handleSubmit = () => {
     const { username } = this.state;
-    const { selectedUserId } = this.props; 
+    const { selectedUserId } = this.props;
+
+    // Realizar a validação do campo "username"
+    if (!username || username.length < 3 || /\d/.test(username) || /\s/.test(username)) {
+      toast.error('Username must be at least 3 characters long and contain no numbers or spaces.');
+      return;
+    }
 
     const updateUser = {
       username,
@@ -32,10 +40,10 @@ class UpdateUserForm extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert('User updated');
+        toast.success('User updated successfully.');
       })
       .catch((error) => {
-        alert('Error updating user:', error);
+        toast.error('Error updating user:', error);
       });
   };
 
@@ -60,6 +68,7 @@ class UpdateUserForm extends Component {
             Update User
           </button>
         </form>
+        <ToastContainer />
       </div>
     );
   }
