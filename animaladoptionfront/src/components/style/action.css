@@ -1,22 +1,19 @@
-/* action.css */
-
 .action {
-    display: flex;                /* Faz com que os botões fiquem lado a lado */
+    display: flex;               
   }
   
   .action button {
-    background-color: rgb(255, 255, 255); /* Define o fundo branco */
+    background-color: rgb(255, 255, 255); 
     border: none;
-    padding: 5px 10px; /* Ajuste o preenchimento conforme necessário */
-    margin-right: 10px; /* Define a margem entre os botões */
+    padding: 5px 10px; 
+    margin-right: 10px;
     cursor: pointer;
-    /* Reduza o tamanho dos botões aqui */
-    width: 50px; /* Largura do botão */
-    height: 30px; /* Altura do botão */
+    width: 50px; 
+    height: 30px; 
   }
   
   .action img {
-    vertical-align: middle; /* Centraliza a imagem verticalmente */
+    vertical-align: middle;
   }
 
   

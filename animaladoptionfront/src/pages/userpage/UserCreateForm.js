@@ -13,7 +13,7 @@ class UserCreateForm extends Component {
       isPopupVisible: false,
       isAnimalCreateFormVisible: false,
       isMenuVisible: false,
-      usernameError: '', // Error message for username validation
+      usernameError: '',
     };
   }
 
@@ -21,9 +21,9 @@ class UserCreateForm extends Component {
     const { name, value, type, checked } = e.target;
     this.setState({ [name]: type === 'checkbox' ? checked : value });
 
-    // Validate username
+
     if (name === 'username') {
-      const usernamePattern = /^[a-zA-Z]+$/; // Only allows letters
+      const usernamePattern = /^[a-zA-Z]+$/; 
       if (value.length < 3) {
         this.setState({ usernameError: 'Username should have at least 3 characters' });
       } else if (!usernamePattern.test(value)) {
@@ -38,13 +38,11 @@ class UserCreateForm extends Component {
     e.preventDefault();
     const { username, isAdmin } = this.state;
 
-    // Check if the username is empty
     if (username.trim() === '') {
       toast.error('Username cannot be empty.');
       return;
     }
 
-    // Check if the username meets the minimum length requirement
     if (username.length < 3) {
       toast.error('Username should have at least 3 characters.');
       return;
@@ -52,7 +50,6 @@ class UserCreateForm extends Component {
 
     const userDto = { username, isAdmin };
 
-    // Check for username validation error before submitting
     if (this.state.usernameError) {
       toast.error('Username is not valid. Please correct the errors.');
       return;
@@ -137,7 +134,7 @@ class UserCreateForm extends Component {
             {isAnimalCreateFormVisible && <AnimalCreateForm />}
           </>
         )}
-        <ToastContainer /> {/* Add the ToastContainer here */}
+        <ToastContainer />
       </div>
     );
   }

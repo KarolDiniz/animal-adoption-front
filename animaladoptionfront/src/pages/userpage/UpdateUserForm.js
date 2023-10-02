@@ -21,7 +21,6 @@ class UpdateUserForm extends Component {
     const { username } = this.state;
     const { selectedUserId } = this.props;
 
-    // Realizar a validação do campo "username"
     if (!username || username.length < 3 || /\d/.test(username) || /\s/.test(username)) {
       toast.error('Username must be at least 3 characters long and contain no numbers or spaces.');
       return;

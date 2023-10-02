@@ -23,7 +23,6 @@ class UpdateAnimalForm extends Component {
     const { name, species, description } = this.state;
     const { animalId } = this.props;
 
-    // Realizar a validação dos campos
     if (name.length < 3 || species.length < 3 || description.length < 10) {
       toast.error('Name and species must have at least 3 characters. Description must have at least 10 characters.');
       return;
@@ -35,7 +34,7 @@ class UpdateAnimalForm extends Component {
       description,
     };
 
-    console.log('Received animalId:', animalId); // Adicione este console.log para verificar o animalId
+    console.log('Received animalId:', animalId); 
 
     fetch(`http://localhost:8080/api/animals/${animalId}`, {
       method: 'PUT',
@@ -48,7 +47,7 @@ class UpdateAnimalForm extends Component {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json(); // Parse the JSON response
+        return response.json(); 
       })
       .then((data) => {
         toast.success('Animal updated successfully.');

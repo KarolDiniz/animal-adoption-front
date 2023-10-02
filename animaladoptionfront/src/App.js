@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <AdminLoginForm setAdminToken={setAdminToken} />
-      <ToastContainer /> {/* Adicione o ToastContainer aqui */}
+      <ToastContainer /> 
     </div>
   );
 }
